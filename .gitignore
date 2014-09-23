@@ -41,3 +41,13 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Visual Studio generated items
+*.sdf
+*.suo
+*.cache
+*.opensdf
+obj/
+\!VS_TMP/
+bin/
+AppPackages/
