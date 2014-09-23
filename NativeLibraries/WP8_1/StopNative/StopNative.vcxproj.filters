@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>5fe87c98-f049-41c8-a01c-acc6bade72d4</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Class1.cpp" />
+    <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\RendererProxy.cpp" />
+    <ClCompile Include="Renderer\D3D\RendererD3D.cpp" />
+    <ClCompile Include="Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.cpp" />
+    <ClCompile Include="D3DView.cpp" />
+    <ClCompile Include="Helpers\H.cpp" />
+    <ClCompile Include="Helpers\HTask.cpp" />
+    <ClCompile Include="Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Class1.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\RendererProxy.h" />
+    <ClInclude Include="Renderer\D3D\RendererD3D.h" />
+    <ClInclude Include="Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
+    <ClInclude Include="D3DView.h" />
+    <ClInclude Include="Helpers\H.h" />
+    <ClInclude Include="Helpers\HTask.h" />
+    <ClInclude Include="Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
+    <ClInclude Include="Threading\ServiceOperation.h" />
+    <ClInclude Include="Threading\ServiceDataPolicy.h" />
+    <ClInclude Include="Threading\Service.h" />
+    <ClInclude Include="Threading\ServiceSimplePolicy.h" />
+    <ClInclude Include="Threading\ServicePolicyHelpers.h" />
+    <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
+  </ItemGroup>
+</Project>
