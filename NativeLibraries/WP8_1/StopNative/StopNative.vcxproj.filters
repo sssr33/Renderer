@@ -17,7 +17,6 @@
     <ClCompile Include="Helpers\H.cpp" />
     <ClCompile Include="Helpers\HTask.cpp" />
     <ClCompile Include="Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -36,6 +35,5 @@
     <ClInclude Include="Threading\ServiceSimplePolicy.h" />
     <ClInclude Include="Threading\ServicePolicyHelpers.h" />
     <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
-    <ClInclude Include="test.h" />
   </ItemGroup>
 </Project>

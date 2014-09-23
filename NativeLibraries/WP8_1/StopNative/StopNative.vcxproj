@@ -150,7 +150,6 @@
     <ClInclude Include="Renderer\D3D\RendererD3D.h" />
     <ClInclude Include="Renderer\RendererProxy.h" />
     <ClInclude Include="Renderer\Renderer.h" />
-    <ClInclude Include="test.h" />
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
     <ClInclude Include="Threading\ServiceDataPolicy.h" />
@@ -174,7 +173,6 @@
     <ClCompile Include="Renderer\D3D\RendererD3D.cpp" />
     <ClCompile Include="Renderer\RendererProxy.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
