@@ -51,3 +51,4 @@ obj/
 \!VS_TMP/
 bin/
 AppPackages/
+ipch/
