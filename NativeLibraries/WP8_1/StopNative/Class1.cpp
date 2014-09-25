@@ -10,7 +10,7 @@
 #include <vector>
 
 typedef OperationDataPolicyWindows<int> IntDataPolicy; 
-typedef ServiceOperation<IntDataPolicy, ServiceOperationRunPolicy> IntServiceOperation;
+typedef ServiceOperation<IntDataPolicy, ServiceOperationTestRunPolicy, int> IntServiceOperation;
 typedef ServiceStdThreadPolicy <IntDataPolicy, std::unique_ptr<IntServiceOperation>> IntService;
 //typedef ServiceSimplePolicy <IntDataPolicy, std::unique_ptr<IntServiceOperation>> IntService;
 //typedef ServiceSimplePolicy <IntDataPolicy, std::shared_ptr<IntServiceOperation>> IntService;
@@ -39,6 +39,12 @@ Class1::Class1()
 
 	auto tmpRef = StdDerefPolicy::Deref(dd);
 
+	//auto res = dd->GetResult();
+
 	intServ.AddOperation(dd);
+
+	//auto rValue = res.GetValue();
+
+	int stop = 324;
 
 }

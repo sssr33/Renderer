@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Renderer\RendererProxy.h"
+#include "GraphicsSystem\Renderer\RendererProxy.h"
 
 namespace StopNative
 {

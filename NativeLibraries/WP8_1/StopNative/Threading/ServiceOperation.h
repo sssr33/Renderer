@@ -1,8 +1,11 @@
 #pragma once
 #include "ServiceDataPolicy.h"
+#include "ServiceOperationReturnPolicy.h"
+
+#include <future>
 
 template<class ServiceDataPolicy>
-class ServiceOperationRunPolicy
+class ServiceOperationTestRunPolicy
 {
 public:
 
@@ -13,12 +16,13 @@ public:
 
 protected:
 
-	~ServiceOperationRunPolicy() {}
+	~ServiceOperationTestRunPolicy() {}
 
 };
 
-template<class ServiceDataPolicy, template <class T> class ServiceOperationDoPolicy>
-class ServiceOperation : public ServiceOperationRunPolicy<ServiceDataPolicy>
+template<class ServiceDataPolicy, template <class T> class ServiceOperationRunPolicy, 
+class R = void, template <class T> class ReturnPolicy = StdReturnPolicy>
+class ServiceOperation : public ServiceOperationRunPolicy<ServiceDataPolicy>, public ReturnPolicy<R>
 {
 public:
 

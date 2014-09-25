@@ -12,11 +12,11 @@
     <ClCompile Include="D3DView.cpp" />
     <ClCompile Include="Helpers\H.cpp" />
     <ClCompile Include="Helpers\HTask.cpp" />
-    <ClCompile Include="Graphics System\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
-    <ClCompile Include="Graphics System\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.cpp" />
-    <ClCompile Include="Graphics System\Renderer\D3D\RendererD3D.cpp" />
-    <ClCompile Include="Graphics System\Renderer\Renderer.cpp" />
-    <ClCompile Include="Graphics System\Renderer\RendererProxy.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3D.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\Renderer.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\RendererProxy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -30,10 +30,11 @@
     <ClInclude Include="Threading\ServiceSimplePolicy.h" />
     <ClInclude Include="Threading\ServicePolicyHelpers.h" />
     <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
-    <ClInclude Include="Graphics System\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
-    <ClInclude Include="Graphics System\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
-    <ClInclude Include="Graphics System\Renderer\D3D\RendererD3D.h" />
-    <ClInclude Include="Graphics System\Renderer\Renderer.h" />
-    <ClInclude Include="Graphics System\Renderer\RendererProxy.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3D.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
+    <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
   </ItemGroup>
 </Project>

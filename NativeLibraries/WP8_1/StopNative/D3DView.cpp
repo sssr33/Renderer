@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "D3DView.h"
-#include "Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h"
+#include "GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h"
 
 namespace StopNative
 {

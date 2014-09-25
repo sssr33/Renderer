@@ -140,29 +140,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Graphics System\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
     <ClInclude Include="D3DView.h" />
     <ClInclude Include="Helpers\H.h" />
     <ClInclude Include="Helpers\HTask.h" />
-    <ClInclude Include="Graphics System\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Class1.h" />
-    <ClInclude Include="Graphics System\Renderer\D3D\RendererD3D.h" />
-    <ClInclude Include="Graphics System\Renderer\RendererProxy.h" />
-    <ClInclude Include="Graphics System\Renderer\Renderer.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3D.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
     <ClInclude Include="Threading\ServiceDataPolicy.h" />
+    <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
     <ClInclude Include="Threading\ServicePolicyHelpers.h" />
     <ClInclude Include="Threading\ServiceSimplePolicy.h" />
     <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graphics System\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
     <ClCompile Include="D3DView.cpp" />
     <ClCompile Include="Helpers\H.cpp" />
     <ClCompile Include="Helpers\HTask.cpp" />
-    <ClCompile Include="Graphics System\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -170,9 +171,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Class1.cpp" />
-    <ClCompile Include="Graphics System\Renderer\D3D\RendererD3D.cpp" />
-    <ClCompile Include="Graphics System\Renderer\RendererProxy.cpp" />
-    <ClCompile Include="Graphics System\Renderer\Renderer.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3D.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\RendererProxy.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\Renderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
