@@ -28,6 +28,8 @@ class StdReturnPolicy
 {
 public:
 
+	typedef StdReturnContainer<R> ReturnType;
+
 	StdReturnPolicy()
 	{
 		this->fut = this->prom.get_future();

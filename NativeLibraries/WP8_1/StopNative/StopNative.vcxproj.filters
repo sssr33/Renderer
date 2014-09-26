@@ -36,5 +36,6 @@
     <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
     <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
     <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
+    <ClInclude Include="Threading\ServiceOperationRBase.h" />
   </ItemGroup>
 </Project>

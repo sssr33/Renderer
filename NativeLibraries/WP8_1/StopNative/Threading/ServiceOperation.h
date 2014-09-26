@@ -1,34 +1,16 @@
 #pragma once
 #include "ServiceDataPolicy.h"
-#include "ServiceOperationReturnPolicy.h"
-
-#include <future>
 
 template<class ServiceDataPolicy>
-class ServiceOperationTestRunPolicy
-{
-public:
-
-	void Run(const ServiceDataPolicy &serviceData)
-	{
-		int stop = 324;
-	}
-
-protected:
-
-	~ServiceOperationTestRunPolicy() {}
-
-};
-
-template<class ServiceDataPolicy, template <class T> class ServiceOperationRunPolicy, 
-class R = void, template <class T> class ReturnPolicy = StdReturnPolicy>
-class ServiceOperation : public ServiceOperationRunPolicy<ServiceDataPolicy>, public ReturnPolicy<R>
+class ServiceOperation
 {
 public:
 
 	ServiceOperation()
 		: cancelled(false)
 	{}
+
+	virtual ~ServiceOperation() {}
 
 	bool IsCancelled() const
 	{
@@ -40,14 +22,7 @@ public:
 		this->cancelled = true;
 	}
 
-	void Run(const ServiceDataPolicy &serviceData)
-	{
-		ServiceOperationRunPolicy<ServiceDataPolicy>::Run(serviceData);
-	}
-
-//protected:
-
-	~ServiceOperation() {}
+	virtual void Run(ServiceDataPolicy &serviceData) = 0;
 
 private:
 

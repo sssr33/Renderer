@@ -153,6 +153,7 @@
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
     <ClInclude Include="Threading\ServiceDataPolicy.h" />
+    <ClInclude Include="Threading\ServiceOperationRBase.h" />
     <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
     <ClInclude Include="Threading\ServicePolicyHelpers.h" />
     <ClInclude Include="Threading\ServiceSimplePolicy.h" />
