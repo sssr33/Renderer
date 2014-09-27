@@ -5,6 +5,7 @@
 #include "Threading\ServiceDataPolicy.h"
 #include "Threading\ServiceOperation.h"
 #include "Threading\ServiceOperationRBase.h"
+#include "Threading\ServiceOperationRBaseGeneric.h"
 #include "Threading\Service.h"
 
 #include <memory>
@@ -43,49 +44,42 @@ public:
 
 };
 
-template<class R, class Callable>
-class GenericRCOperation : public IntRServiceOperation<R>::Type
+int OperationFn(IntDataPolicy &serviceState)
 {
-public:
+	return 123;
+}
 
-	GenericRCOperation(Callable &func)
-		: func(func)
-	{}
-	virtual ~GenericRCOperation(){}
-
-	virtual void Run(IntDataPolicy &serviceState) override
+struct OperationCallableObj
+{
+	short operator()(IntDataPolicy &serviceState)
 	{
-		this->SetResult(this->func(serviceState));
+		return 12345;
 	}
-
-private:
-
-	Callable func;
-
 };
 
-template<class Callable>
-typename GenericRCOperation<typename std::result_of<Callable(IntDataPolicy &)>::type, Callable>::ReturnType AddGenericIntOperation(Callable func, IntService *serv)
+auto operationLambda =
+[&](IntDataPolicy &serviceState)
 {
-	typedef typename std::result_of<Callable(IntDataPolicy &)>::type R;
-	GenericRCOperation<R, Callable> *opTmp = new GenericRCOperation<R, Callable>(func);
-	GenericRCOperation<R, Callable>::ReturnType result = opTmp->GetResult();
-	std::unique_ptr<IntOperation> opUnique = std::unique_ptr<IntOperation>(opTmp);
+	return 6.28;
+};
 
-	serv->AddOperation(opUnique);
-
-	return result;
-}
+std::function<float(IntDataPolicy &serviceState)> operationFunctionObj = 
+[&](IntDataPolicy &serviceState)
+{
+	float res = static_cast<float>(operationLambda(serviceState) * 2.0);
+	return res;
+};
 
 using namespace StopNative;
 using namespace Platform;
 
 Class1::Class1()
 {
-	IntDataPolicy idp;
+	IntService intServ;
+
 	auto opTmp = new SimpleRCOperation;
 	auto opResult = opTmp->GetResult();
-	std::unique_ptr<IntOperation> dd = std::unique_ptr<IntOperation>(opTmp);
+	std::unique_ptr<IntOperation> simpleIntOp = std::unique_ptr<IntOperation>(opTmp);
 	//std::shared_ptr<IntServiceOperation> dd = std::make_shared<IntServiceOperation>();
 	/*IntServiceOperation dd;
 	IntServiceOperation *p = &dd;*/
@@ -95,23 +89,30 @@ Class1::Class1()
 
 	ops.push_back(StdCopyPolicy::Copy(dd));*/
 
-	IntService intServ;
+	auto tmpRef = StdDerefPolicy::Deref(simpleIntOp);
+	intServ.AddOperation(simpleIntOp);
 
-	auto tmpRef = StdDerefPolicy::Deref(dd);
-
-	intServ.AddOperation(dd);
-
-	auto ttt = 
-		[&](IntDataPolicy &serviceState)
-	{
-		return 6.28; 
-	};
-
-	auto res222 = AddGenericIntOperation(ttt, &intServ);
-
-	auto r2 = res222.GetValue();
 	auto res = opResult.GetValue();
 
+	auto fnBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(OperationFn);
+	auto objBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(OperationCallableObj());
+	auto lambdaBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(operationLambda);
+	auto funcObjBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(operationFunctionObj);
+
+	auto fnBasedOpRes = fnBasedOp->GetResult();
+	auto objBasedOpRes = objBasedOp->GetResult();
+	auto lambdaBasedOpRes = lambdaBasedOp->GetResult();
+	auto funcObjBasedOpRes = funcObjBasedOp->GetResult();
+
+	intServ.AddOperation(std::unique_ptr<IntOperation>(fnBasedOp));
+	intServ.AddOperation(std::unique_ptr<IntOperation>(objBasedOp));
+	intServ.AddOperation(std::unique_ptr<IntOperation>(lambdaBasedOp));
+	intServ.AddOperation(std::unique_ptr<IntOperation>(funcObjBasedOp));
+
+	auto fnRes = fnBasedOpRes.GetValue();
+	auto objRes = objBasedOpRes.GetValue();
+	auto lambdaRes = lambdaBasedOpRes.GetValue();
+	auto fnObjRes = funcObjBasedOpRes.GetValue();
 
 	int stop = 324;
 

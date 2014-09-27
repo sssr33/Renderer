@@ -6,6 +6,8 @@ class ServiceOperation
 {
 public:
 
+	typedef ServiceDataPolicy DataPolicy;
+
 	ServiceOperation()
 		: cancelled(false)
 	{}

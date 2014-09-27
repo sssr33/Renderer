@@ -151,6 +151,7 @@
     <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
     <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
     <ClInclude Include="Threading\Service.h" />
+    <ClInclude Include="Threading\ServiceOperationRBaseGeneric.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
     <ClInclude Include="Threading\ServiceDataPolicy.h" />
     <ClInclude Include="Threading\ServiceOperationRBase.h" />
