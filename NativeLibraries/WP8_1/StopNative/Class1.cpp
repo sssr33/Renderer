@@ -13,13 +13,13 @@
 #include <functional>
 #include <type_traits>
 
-typedef OperationDataPolicyWindows<int> IntDataPolicy; 
+typedef OperationDataPolicyWindows<int> IntDataPolicy;
 typedef ServiceOperation<IntDataPolicy> IntOperation;
 
-template<class R>
+template<class Derived, class R>
 struct IntRServiceOperation
 {
-	typedef ServiceOperationRBase<IntOperation, R> Type;
+	typedef ServiceOperationRBaseRunWrap<IntOperation, Derived, R> Type;
 };
 
 typedef ServiceStdThreadPolicy <IntDataPolicy, std::unique_ptr<IntOperation>> IntService;
@@ -30,18 +30,21 @@ typedef ServiceStdThreadPolicy <IntDataPolicy, std::unique_ptr<IntOperation>> In
 
 // data -> operation(data) -> service
 
-class SimpleRCOperation : public IntRServiceOperation<float>::Type
+class SimpleRCOperation : public IntRServiceOperation<SimpleRCOperation, float>::Type
 {
 public:
 
 	SimpleRCOperation(){}
 	virtual ~SimpleRCOperation(){}
 
-	virtual void Run(IntDataPolicy &serviceState) override
+	//RUN_IMPL_METHOD_PROTO;
+	RUN_IMPL_METHOD_DEF(SimpleRCOperation)
 	{
-		this->SetResult(3.14f);
-	}
+		//throw std::exception("SimpleRCOperation Hello");
+		throw ref new Platform::Exception(-1, "SimpleRCOperation Hello2");
 
+		return 3.3f;
+	}
 };
 
 int OperationFn(IntDataPolicy &serviceState)
@@ -63,11 +66,15 @@ auto operationLambda =
 	return 6.28;
 };
 
-std::function<float(IntDataPolicy &serviceState)> operationFunctionObj = 
+std::function<void(IntDataPolicy &serviceState)> operationFunctionObj =
 [&](IntDataPolicy &serviceState)
 {
 	float res = static_cast<float>(operationLambda(serviceState) * 2.0);
-	return res;
+
+	//throw std::exception("Hello");
+	throw ref new Platform::Exception(-1, "Hello2");
+
+	//return res;
 };
 
 using namespace StopNative;
@@ -92,7 +99,18 @@ Class1::Class1()
 	auto tmpRef = StdDerefPolicy::Deref(simpleIntOp);
 	intServ.AddOperation(simpleIntOp);
 
-	auto res = opResult.GetValue();
+	try
+	{
+		auto res = opResult.GetValue();
+	}
+	catch (Platform::Exception ^e)
+	{
+		int stop = 324;
+	}
+	catch (const std::exception& e)
+	{
+		int stop = 324;
+	}
 
 	auto fnBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(OperationFn);
 	auto objBasedOp = ServiceOperationRBaseGenericFactory<IntOperation>::Create(OperationCallableObj());
@@ -112,7 +130,20 @@ Class1::Class1()
 	auto fnRes = fnBasedOpRes.GetValue();
 	auto objRes = objBasedOpRes.GetValue();
 	auto lambdaRes = lambdaBasedOpRes.GetValue();
-	auto fnObjRes = funcObjBasedOpRes.GetValue();
+
+	try
+	{
+		/*auto fnObjRes = */funcObjBasedOpRes.GetValue();
+	}
+	catch (Platform::Exception ^e)
+	{
+		int stop = 324;
+	}
+	catch (const std::exception& e)
+	{
+		int stop = 324;
+	}
+
 
 	int stop = 324;
 

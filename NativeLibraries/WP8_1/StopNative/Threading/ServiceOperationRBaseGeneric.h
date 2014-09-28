@@ -17,7 +17,62 @@ public:
 
 	virtual void Run(typename ServiceOperationBase::DataPolicy &serviceState) override
 	{
-		this->SetResult(this->func(serviceState));
+		try
+		{
+			this->SetResult(this->func(serviceState));
+		}
+		catch (...)
+		{
+			try
+			{
+				// set_exception() may throw too
+				this->SetException(std::current_exception());
+			}
+			catch (...)
+			{
+				int stop = 324;
+			}
+		}
+	}
+
+private:
+
+	Callable func;
+
+};
+
+template<class Callable, class ServiceOperationBase,
+template <class T> class ReturnPolicy>
+class ServiceOperationRBaseGeneric<Callable, ServiceOperationBase, void, ReturnPolicy> :
+	public ServiceOperationRBase<ServiceOperationBase, void, ReturnPolicy>
+{
+public:
+
+	ServiceOperationRBaseGeneric(Callable &func)
+		: func(func)
+	{}
+
+	virtual ~ServiceOperationRBaseGeneric() {}
+
+	virtual void Run(typename ServiceOperationBase::DataPolicy &serviceState) override
+	{
+		try
+		{
+			this->func(serviceState);
+			this->SetResult();
+		}
+		catch (...)
+		{
+			try
+			{
+				// set_exception() may throw too
+				this->SetException(std::current_exception());
+			}
+			catch (...)
+			{
+				int stop = 324;
+			}
+		}
 	}
 
 private:
