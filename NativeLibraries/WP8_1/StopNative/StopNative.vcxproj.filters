@@ -17,6 +17,8 @@
     <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3D.cpp" />
     <ClCompile Include="GraphicsSystem\Renderer\Renderer.cpp" />
     <ClCompile Include="GraphicsSystem\Renderer\RendererProxy.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -38,5 +40,9 @@
     <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
     <ClInclude Include="Threading\ServiceOperationRBase.h" />
     <ClInclude Include="Threading\ServiceOperationRBaseGeneric.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceDef.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOperations.h" />
   </ItemGroup>
 </Project>

@@ -95,6 +95,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>DXGI.lib;D3D11.lib;D2D1.lib;DWrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,6 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>DXGI.lib;D3D11.lib;D2D1.lib;DWrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -123,6 +125,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>DXGI.lib;D3D11.lib;D2D1.lib;DWrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -137,11 +140,15 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>DXGI.lib;D3D11.lib;D2D1.lib;DWrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOperations.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.h" />
     <ClInclude Include="D3DView.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceDef.h" />
     <ClInclude Include="Helpers\H.h" />
     <ClInclude Include="Helpers\HTask.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\InitParams\D3DSwapChainPanelInitParams.h" />
@@ -150,6 +157,7 @@
     <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3D.h" />
     <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
     <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
+    <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.h" />
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperationRBaseGeneric.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
@@ -161,6 +169,7 @@
     <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.cpp" />
     <ClCompile Include="GraphicsSystem\Renderer\D3D\DisplayParameters\D3DSwapChainPanelDisplayParams.cpp" />
     <ClCompile Include="D3DView.cpp" />
     <ClCompile Include="Helpers\H.cpp" />
@@ -176,6 +185,7 @@
     <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3D.cpp" />
     <ClCompile Include="GraphicsSystem\Renderer\RendererProxy.cpp" />
     <ClCompile Include="GraphicsSystem\Renderer\Renderer.cpp" />
+    <ClCompile Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

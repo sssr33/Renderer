@@ -2,6 +2,7 @@
 #include "RendererProxy.h"
 #include "..\Helpers\H.h"
 #include "D3D\InitParams\D3DSwapChainPanelInitParams.h"
+#include "D3D\RendererD3D.h"
 
 #include <ppltasks.h>
 #include <directxmath.h>
@@ -29,6 +30,11 @@ void RendererProxy::InitializeInternal(std::map<std::string, std::shared_ptr<voi
 
 	if (finded != params.end())
 	{
+		std::unique_ptr<RendererD3D> d3dRenderer = std::unique_ptr<RendererD3D>(new RendererD3D);
+
+		// start async initialization of d3d renderer
+		d3dRenderer->InitializeBase();
+
 		float dpi;
 		DirectX::XMFLOAT2 logicalSize, compositionScale;
 		Windows::Graphics::Display::DisplayOrientations currentOrientation, nativeOrientation;
@@ -53,6 +59,8 @@ void RendererProxy::InitializeInternal(std::map<std::string, std::shared_ptr<voi
 			nativeOrientation = currentDisplayInformation->NativeOrientation;
 
 		}, swapChainPanel->Dispatcher);
+
+		this->rendererImpl = std::unique_ptr<Renderer>(d3dRenderer.release());
 
 		int stop = 324;
 	}
