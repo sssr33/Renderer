@@ -158,13 +158,16 @@
     <ClInclude Include="GraphicsSystem\Renderer\RendererProxy.h" />
     <ClInclude Include="GraphicsSystem\Renderer\Renderer.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.h" />
+    <ClInclude Include="Threading\ServiceDataPolicyBase.h" />
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperationRBaseGeneric.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />
     <ClInclude Include="Threading\ServiceDataPolicy.h" />
     <ClInclude Include="Threading\ServiceOperationRBase.h" />
     <ClInclude Include="Threading\ServiceOperationReturnPolicy.h" />
+    <ClInclude Include="Threading\ServicePolicyBase.h" />
     <ClInclude Include="Threading\ServicePolicyHelpers.h" />
+    <ClInclude Include="Threading\ServiceReturnPolicyBase.h" />
     <ClInclude Include="Threading\ServiceSimplePolicy.h" />
     <ClInclude Include="Threading\ServiceStdThreadPolicy.h" />
   </ItemGroup>

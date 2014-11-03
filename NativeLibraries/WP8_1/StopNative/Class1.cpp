@@ -80,8 +80,31 @@ std::function<void(IntDataPolicy &serviceState)> operationFunctionObj =
 using namespace StopNative;
 using namespace Platform;
 
+template<typename T>
+using unique_ptr_default = std::unique_ptr<T>;
+
+typedef ServiceSimplePolicy2<int, OperationDataPolicyStd2, unique_ptr_default> SP2;
+
+class SimpleOpImpl : public SP2::OperationBase<SimpleOpImpl>::Type{
+public:
+
+	SimpleOpImpl(){
+	}
+	virtual ~SimpleOpImpl(){
+	}
+
+	void Run(SimpleOpImpl::ServiceType &service){
+		auto &data = service.AcquireTaskData();
+		service.ReturnTaskData();
+	}
+};
+
 Class1::Class1()
 {
+	SP2 sp;
+
+	sp.AddOperation(SP2::OperationType(new SimpleOpImpl));
+
 	IntService intServ;
 
 	auto opTmp = new SimpleRCOperation;

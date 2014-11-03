@@ -44,5 +44,8 @@
     <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOperations.h" />
+    <ClInclude Include="Threading\ServicePolicyBase.h" />
+    <ClInclude Include="Threading\ServiceDataPolicyBase.h" />
+    <ClInclude Include="Threading\ServiceReturnPolicyBase.h" />
   </ItemGroup>
 </Project>
