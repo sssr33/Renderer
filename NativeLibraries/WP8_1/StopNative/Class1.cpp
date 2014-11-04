@@ -7,6 +7,7 @@
 #include "Threading\ServiceOperationRBase.h"
 #include "Threading\ServiceOperationRBaseGeneric.h"
 #include "Threading\Service.h"
+#include "Threading\ServiceOperationStdReturnPolicy.h"
 
 #include <memory>
 #include <vector>
@@ -85,7 +86,7 @@ using unique_ptr_default = std::unique_ptr<T>;
 
 typedef ServiceSimplePolicy2<int, OperationDataPolicyStd2, unique_ptr_default> SP2;
 
-class SimpleOpImpl : public SP2::OperationBase<SimpleOpImpl>::Type{
+class SimpleOpImpl : public SP2::OperationBase<SimpleOpImpl, float, StdReturnContainer2, StdReturnPolicy2>::Type{
 public:
 
 	SimpleOpImpl(){
@@ -93,9 +94,13 @@ public:
 	virtual ~SimpleOpImpl(){
 	}
 
-	void Run(SimpleOpImpl::ServiceType &service){
+	float Run(SimpleOpImpl::ServiceType &service){
 		auto &data = service.AcquireTaskData();
 		service.ReturnTaskData();
+
+		throw std::exception("234");
+
+		return 1.0f;
 	}
 };
 
@@ -103,7 +108,14 @@ Class1::Class1()
 {
 	SP2 sp;
 
-	sp.AddOperation(SP2::OperationType(new SimpleOpImpl));
+	auto spOp = new SimpleOpImpl;
+	auto result = spOp->GetResult();
+
+	sp.SetExceptionHandler(std::unique_ptr<ServiceUnhandledExceptionHandler<EmptyServiceUnhandledExceptionHandler>>(new ServiceUnhandledExceptionHandler<EmptyServiceUnhandledExceptionHandler>()));
+
+	sp.AddOperation(SP2::OperationType(spOp));
+
+	auto r = result.GetValue();
 
 	IntService intServ;
 

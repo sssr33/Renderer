@@ -28,12 +28,12 @@ private:
 
 };
 
-template<class Data, template<class D> class DataPolicyImpl, template<class T> class OperationWrapper, class DerefPolicy = StdDerefPolicy>
-class ServiceSimplePolicy2 : public ServicePolicyBase<ServiceSimplePolicy2<Data, DataPolicyImpl, OperationWrapper, DerefPolicy>, Data, DataPolicyImpl, OperationWrapper, DerefPolicy>{
+template<class Data, template<class D> class DataPolicyImpl, template<class T> class OperationWrapper, class ExceptionHandlerImpl = EmptyServiceUnhandledExceptionHandler, class DerefPolicy = StdDerefPolicy>
+class ServiceSimplePolicy2 : public ServicePolicyBase<ServiceSimplePolicy2<Data, DataPolicyImpl, OperationWrapper, ExceptionHandlerImpl, DerefPolicy>, Data, DataPolicyImpl, OperationWrapper, ExceptionHandlerImpl, DerefPolicy>{
 public:
 	ServiceSimplePolicy2(){}
 
-	void AddOperation(typename ServicePolicyBase::OperationType &op){
+	void AddOperationImpl(typename ServicePolicyBase::OperationType &op){
 		DerefPolicy::Deref(op)->RunVirtual(*this);
 	}
 

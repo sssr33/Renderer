@@ -46,6 +46,8 @@
     <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOperations.h" />
     <ClInclude Include="Threading\ServicePolicyBase.h" />
     <ClInclude Include="Threading\ServiceDataPolicyBase.h" />
-    <ClInclude Include="Threading\ServiceReturnPolicyBase.h" />
+    <ClInclude Include="Threading\ServiceOperationStdReturnPolicy.h" />
+    <ClInclude Include="Threading\ServiceOperationReturnPolicyBase.h" />
+    <ClInclude Include="Threading\ServiceUnhandledExceptionHandler.h" />
   </ItemGroup>
 </Project>
