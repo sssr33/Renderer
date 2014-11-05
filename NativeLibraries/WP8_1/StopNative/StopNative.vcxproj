@@ -164,6 +164,7 @@
     <ClInclude Include="Threading2\ServiceOperationBase.h" />
     <ClInclude Include="Threading2\ServicePolicyHelpersImpl.h" />
     <ClInclude Include="Threading2\ServiceSimplePolicy.h" />
+    <ClInclude Include="Threading2\ServiceStdThreadPolicy.h" />
     <ClInclude Include="Threading\Service.h" />
     <ClInclude Include="Threading\ServiceOperationRBaseGeneric.h" />
     <ClInclude Include="Threading\ServiceOperation.h" />

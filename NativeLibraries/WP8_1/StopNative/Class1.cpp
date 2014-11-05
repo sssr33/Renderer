@@ -84,7 +84,7 @@ using namespace Platform;
 template<typename T>
 using unique_ptr_default = std::unique_ptr<T>;
 
-typedef Threading::ServiceSimplePolicy<int, Threading::OperationDataPolicyStd, unique_ptr_default> SP2;
+typedef Threading::ServiceStdThreadPolicy<int, Threading::OperationDataPolicyStd, unique_ptr_default> SP2;
 
 class SimpleOpImpl : public SP2::OperationBaseStd<SimpleOpImpl, float>::Type{
 public:

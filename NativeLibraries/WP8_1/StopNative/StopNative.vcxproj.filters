@@ -54,5 +54,6 @@
     <ClInclude Include="Threading2\ServiceSimplePolicy.h" />
     <ClInclude Include="Threading2\ServiceUnhandledExceptionHandler.h" />
     <ClInclude Include="Threading2\Service.h" />
+    <ClInclude Include="Threading2\ServiceStdThreadPolicy.h" />
   </ItemGroup>
 </Project>

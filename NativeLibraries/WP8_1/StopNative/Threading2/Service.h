@@ -6,4 +6,5 @@
 #include "ServicePolicyBase.h"
 #include "ServicePolicyHelpersImpl.h"
 #include "ServiceSimplePolicy.h"
+#include "ServiceStdThreadPolicy.h"
 #include "ServiceUnhandledExceptionHandler.h"
