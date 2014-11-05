@@ -103,4 +103,19 @@ namespace Threading{
 			this->currentOp = OpCopyPolicy::Copy(op);
 		}
 	};
+
+	// helper class for using class OpCopyPolicy = StdCopyPolicy
+	// used as ServiceStdThreadPolicyDef::ServicePolicy
+	// if you need to configure OpCopyPolicy you can use ServiceStdThreadPolicyCustom class
+	struct ServiceStdThreadPolicyDef{
+		template<class Data, template<class D> class DataPolicyImpl, template <class T> class OperationWrapper, class ExceptionHandlerImpl = EmptyServiceUnhandledExceptionHandler, class DerefPolicy = StdDerefPolicy>
+		struct ServicePolicy : public ServiceStdThreadPolicy<Data, DataPolicyImpl, OperationWrapper, ExceptionHandlerImpl, DerefPolicy>{};
+	};
+	// helper class for costumizing only OpCopyPolicy
+	// used as ServiceSimplePolicyCustom<MyCopyPolicy>::ServiceDataPolicy
+	template<class OpCopyPolicy = StdCopyPolicy>
+	struct ServiceStdThreadPolicyCustom{
+		template<class Data, template<class D> class DataPolicyImpl, template <class T> class OperationWrapper, class ExceptionHandlerImpl = EmptyServiceUnhandledExceptionHandler, class DerefPolicy = StdDerefPolicy>
+		struct ServicePolicy : public ServiceStdThreadPolicy<Data, DataPolicyImpl, OperationWrapper, ExceptionHandlerImpl, DerefPolicy, OpCopyPolicy>{};
+	};
 }
