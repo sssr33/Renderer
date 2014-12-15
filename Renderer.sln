@@ -28,8 +28,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RendererWinRT.Shared", "NativeLibraries\Universal\RendererWinRT\RendererWinRT.Shared\RendererWinRT.Shared.vcxitems", "{948856F6-8DF3-4DF6-B933-0DA0118CDBD2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RendererWinRT.Windows", "NativeLibraries\Universal\RendererWinRT\RendererWinRT.Windows\RendererWinRT.Windows.vcxproj", "{B8AEA030-89A1-4DD0-BA4D-7A3CF1059014}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C71BB34C-C761-478C-B7EF-87370C1CA1F6} = {C71BB34C-C761-478C-B7EF-87370C1CA1F6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RendererWinRT.WindowsPhone", "NativeLibraries\Universal\RendererWinRT\RendererWinRT.WindowsPhone\RendererWinRT.WindowsPhone.vcxproj", "{B18929C2-2A4E-4106-9592-9F96FD72E842}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE4FC2B7-C08D-466E-95A6-5206BBEF2871} = {CE4FC2B7-C08D-466E-95A6-5206BBEF2871}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
