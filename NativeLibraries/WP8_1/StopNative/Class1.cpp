@@ -7,7 +7,7 @@
 #include "Threading\ServiceOperationRBase.h"
 #include "Threading\ServiceOperationRBaseGeneric.h"
 #include "Threading\Service.h"
-#include "Threading\ServiceOperationStdReturnPolicy.h"
+#include "Threading2\Service.h"
 
 #include <memory>
 #include <vector>
@@ -84,12 +84,13 @@ using namespace Platform;
 template<typename T>
 using unique_ptr_default = std::unique_ptr<T>;
 
-typedef ServiceSimplePolicy2<int, OperationDataPolicyStd2, unique_ptr_default> SP2;
+typedef Threading::ServiceStdThreadPolicy<int, Threading::OperationDataPolicyStd, unique_ptr_default> SP2;
 
-class SimpleOpImpl : public SP2::OperationBase<SimpleOpImpl, float, StdReturnContainer2, StdReturnPolicy2>::Type{
+class SimpleOpImpl : public SP2::OperationBaseStd<SimpleOpImpl, float>::Type{
 public:
 
 	SimpleOpImpl(){
+		//this->SetRethrowException(false);
 	}
 	virtual ~SimpleOpImpl(){
 	}
@@ -99,7 +100,7 @@ public:
 		service.ReturnTaskData();
 
 		throw std::exception("234");
-
+		//return 2;
 		return 1.0f;
 	}
 };
@@ -111,11 +112,13 @@ Class1::Class1()
 	auto spOp = new SimpleOpImpl;
 	auto result = spOp->GetResult();
 
-	sp.SetExceptionHandler(std::unique_ptr<ServiceUnhandledExceptionHandler<EmptyServiceUnhandledExceptionHandler>>(new ServiceUnhandledExceptionHandler<EmptyServiceUnhandledExceptionHandler>()));
+	std::shared_ptr<Threading::ServiceUnhandledExceptionHandler<Threading::EmptyServiceUnhandledExceptionHandler>> exceptionHandler = std::make_shared<Threading::ServiceUnhandledExceptionHandler<Threading::EmptyServiceUnhandledExceptionHandler>>();
+
+	sp.SetExceptionHandler(exceptionHandler);
 
 	sp.AddOperation(SP2::OperationType(spOp));
 
-	auto r = result.GetValue();
+	result.GetValue();
 
 	IntService intServ;
 

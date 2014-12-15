@@ -44,10 +44,16 @@
     <ClInclude Include="GraphicsSystem\Renderer\D3D\RendererD3DServiceData.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOpInitializeBase.h" />
     <ClInclude Include="GraphicsSystem\Renderer\D3D\Operations\D3DOperations.h" />
-    <ClInclude Include="Threading\ServicePolicyBase.h" />
-    <ClInclude Include="Threading\ServiceDataPolicyBase.h" />
-    <ClInclude Include="Threading\ServiceOperationStdReturnPolicy.h" />
-    <ClInclude Include="Threading\ServiceOperationReturnPolicyBase.h" />
-    <ClInclude Include="Threading\ServiceUnhandledExceptionHandler.h" />
+    <ClInclude Include="Threading2\ServiceDataPolicyBase.h" />
+    <ClInclude Include="Threading2\ServiceDataPolicyImpl.h" />
+    <ClInclude Include="Threading2\ServiceOperationBase.h" />
+    <ClInclude Include="Threading2\ServiceOperationStdReturnPolicy.h" />
+    <ClInclude Include="Threading2\ServiceOperationReturnPolicyBase.h" />
+    <ClInclude Include="Threading2\ServicePolicyBase.h" />
+    <ClInclude Include="Threading2\ServicePolicyHelpersImpl.h" />
+    <ClInclude Include="Threading2\ServiceSimplePolicy.h" />
+    <ClInclude Include="Threading2\ServiceUnhandledExceptionHandler.h" />
+    <ClInclude Include="Threading2\Service.h" />
+    <ClInclude Include="Threading2\ServiceStdThreadPolicy.h" />
   </ItemGroup>
 </Project>
