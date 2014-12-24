@@ -1,5 +1,10 @@
 #include "pch.h"
 #include "Renderer.h"
+#include "DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.h"
+
+#include <memory>
+
+using namespace DX11::DisplayTexture;
 
 using namespace Platform;
 using namespace Windows::ApplicationModel;
@@ -24,6 +29,10 @@ namespace RendererWinRT{
 		this->InitVisualEventHandlers(panel);
 		this->InitInputEventHandlers(panel);
 		this->InitAppEventHandlers();
+
+		DisplayInformation ^currentDisplayInformation = DisplayInformation::GetForCurrentView();
+
+		std::unique_ptr<DisplayTexture> dispTex = std::unique_ptr<DisplayTexture>(new SwapChainPanelDisplayTexture(panel, currentDisplayInformation));
 	}
 
 	void Renderer::InitVisualEventHandlers(SwapChainPanel ^panel){
