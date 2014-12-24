@@ -22,27 +22,10 @@ namespace Renderer
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        RendererWinRT.Renderer renderer;
-
         public MainPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            this.renderer = new RendererWinRT.Renderer();
-            this.renderer.Initialize(this.swapChainPanel);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-
-            this.renderer.Dispose();
         }
     }
 }
