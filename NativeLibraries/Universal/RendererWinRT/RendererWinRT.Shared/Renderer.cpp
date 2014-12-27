@@ -31,8 +31,10 @@ namespace RendererWinRT{
 		this->InitAppEventHandlers();
 
 		DisplayInformation ^currentDisplayInformation = DisplayInformation::GetForCurrentView();
-
 		std::unique_ptr<DisplayTexture> dispTex = std::unique_ptr<DisplayTexture>(new SwapChainPanelDisplayTexture(panel, currentDisplayInformation));
+
+		this->dxDev = std::make_shared<DX11::DeviceResources>();
+		this->dxDev->Initialize(std::move(dispTex));
 	}
 
 	void Renderer::InitVisualEventHandlers(SwapChainPanel ^panel){

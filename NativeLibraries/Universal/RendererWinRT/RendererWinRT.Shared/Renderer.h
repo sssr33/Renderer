@@ -1,4 +1,7 @@
 #pragma once
+#include "DX11\DX11DeviceResources.h"
+
+#include <memory>
 
 namespace RendererWinRT{
 
@@ -10,6 +13,8 @@ namespace RendererWinRT{
 
 		void Initialize(Windows::UI::Xaml::Controls::SwapChainPanel ^panel);
 	private:
+		std::shared_ptr<DX11::DeviceResources> dxDev;
+
 		// Track our independent input on a background worker thread.
 		Windows::Foundation::IAsyncAction^ inputLoopWorker;
 		Windows::UI::Core::CoreIndependentInputSource^ coreInput;

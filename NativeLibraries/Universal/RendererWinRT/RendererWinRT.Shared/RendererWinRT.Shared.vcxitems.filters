@@ -6,6 +6,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DX11DeviceResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11DisplayTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DX11Error.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
@@ -15,5 +16,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DX11DeviceResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11DisplayTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DX11Error.cpp" />
   </ItemGroup>
 </Project>
