@@ -24,6 +24,7 @@ namespace DX11{
 
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>	d3dRenderTargetView;
 		D3D11_VIEWPORT									screenViewport;
+		D3D_FEATURE_LEVEL								d3dFeatureLevel;
 
 		// D2D
 		Microsoft::WRL::ComPtr<ID2D1Factory2>			d2dFactory;

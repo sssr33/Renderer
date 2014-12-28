@@ -35,6 +35,9 @@ namespace DX11{
 			void SetLogicalSize(const DirectX::XMFLOAT2 &v);
 
 			const DirectX::XMFLOAT2 &GetPhysicalSize() const;
+
+			virtual void Resize() = 0;
+		protected:
 			void SetPhysicalSize(const DirectX::XMFLOAT2 &v);
 		private:
 			Orientation defaultOrientation;

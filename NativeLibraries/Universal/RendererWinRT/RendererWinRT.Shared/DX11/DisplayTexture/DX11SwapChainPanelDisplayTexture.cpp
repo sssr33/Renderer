@@ -30,6 +30,10 @@ namespace DX11{
 		SwapChainPanelDisplayTexture::~SwapChainPanelDisplayTexture(){
 		}
 
+		void SwapChainPanelDisplayTexture::Resize(){
+
+		}
+
 		void SwapChainPanelDisplayTexture::ConvOrientations(DisplayOrientations from, Orientation &to){
 			switch (from){
 			case DisplayOrientations::Landscape:

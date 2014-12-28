@@ -11,7 +11,10 @@ namespace DX11{
 			SwapChainPanelDisplayTexture(
 				Windows::UI::Xaml::Controls::SwapChainPanel ^swapChainPanel, 
 				Windows::Graphics::Display::DisplayInformation ^currentDisplayInformation);
+
 			virtual ~SwapChainPanelDisplayTexture();
+
+			virtual void Resize() override;
 
 			static void ConvOrientations(Windows::Graphics::Display::DisplayOrientations from, Orientation &to);
 		private:
