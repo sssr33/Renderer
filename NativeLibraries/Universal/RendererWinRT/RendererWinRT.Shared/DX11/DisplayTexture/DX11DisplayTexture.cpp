@@ -4,10 +4,10 @@
 namespace DX11{
 	namespace DisplayTexture{
 
-		DisplayTexture::DisplayTexture()
+		DisplayTexture::DisplayTexture(DeviceResources *devRes)
 			: defaultOrientation(Orientation::None), currentOrientation(Orientation::None),
 			logicalDpi(0.0f), scale(0.0f, 0.0f), logicalSize(0.0f, 0.0f),
-			physicalSize(0.0f, 0.0f){
+			physicalSize(0.0f, 0.0f), devRes(devRes){
 		}
 
 		DisplayTexture::~DisplayTexture(){
@@ -55,6 +55,10 @@ namespace DX11{
 
 		const DirectX::XMFLOAT2 &DisplayTexture::GetPhysicalSize() const{
 			return this->physicalSize;
+		}
+
+		DeviceResources *DisplayTexture::GetDeviceResources(){
+			return this->devRes;
 		}
 
 		void DisplayTexture::SetPhysicalSize(const DirectX::XMFLOAT2 &v){

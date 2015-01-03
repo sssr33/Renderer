@@ -4,6 +4,9 @@
 #include <DirectXMath.h>
 
 namespace DX11{
+
+	class DeviceResources;
+
 	namespace DisplayTexture{
 
 		enum class Orientation{
@@ -16,7 +19,7 @@ namespace DX11{
 
 		class DisplayTexture{
 		public:
-			DisplayTexture();
+			DisplayTexture(DeviceResources *devRes);
 			virtual ~DisplayTexture();
 
 			Orientation GetDefaultOrientation() const;
@@ -36,7 +39,9 @@ namespace DX11{
 
 			const DirectX::XMFLOAT2 &GetPhysicalSize() const;
 
-			virtual void Resize() = 0;
+			DeviceResources *GetDeviceResources();
+
+			virtual HRESULT Resize() = 0;
 		protected:
 			void SetPhysicalSize(const DirectX::XMFLOAT2 &v);
 		private:
@@ -46,6 +51,7 @@ namespace DX11{
 			DirectX::XMFLOAT2 scale;
 			DirectX::XMFLOAT2 logicalSize;
 			DirectX::XMFLOAT2 physicalSize;
+			DeviceResources *devRes;
 		};
 
 	}

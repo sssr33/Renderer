@@ -9,12 +9,13 @@ namespace DX11{
 		class SwapChainPanelDisplayTexture : public DisplayTexture{
 		public:
 			SwapChainPanelDisplayTexture(
+				DeviceResources *devRes,
 				Windows::UI::Xaml::Controls::SwapChainPanel ^swapChainPanel, 
 				Windows::Graphics::Display::DisplayInformation ^currentDisplayInformation);
 
 			virtual ~SwapChainPanelDisplayTexture();
 
-			virtual void Resize() override;
+			virtual HRESULT Resize() override;
 
 			static void ConvOrientations(Windows::Graphics::Display::DisplayOrientations from, Orientation &to);
 		private:

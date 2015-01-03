@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "DX11DeviceResources.h"
 #include "Helpers\DX11H.h"
+#include "Exceptions\DX11Except.h"
 
 namespace DX11{
 
@@ -122,6 +123,7 @@ namespace DX11{
 	}
 
 	void DeviceResources::CreateSizeDependentResources(){
+		HRESULT hr = S_OK;
 		// Clear the previous window size specific context.
 		ID3D11RenderTargetView* nullViews[] = { nullptr };
 		this->d3dContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
@@ -129,6 +131,15 @@ namespace DX11{
 		this->d2dContext->SetTarget(nullptr);
 		this->d2dTargetBitmap = nullptr;
 		this->d3dContext->Flush();
+
+		hr = this->displayTexture->Resize();
+
+		if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET){
+			throw DX11::Exception::DeviceLost();
+		}
+		else{
+			H::ThrowIfFailed(hr);
+		}
 	}
 
 }

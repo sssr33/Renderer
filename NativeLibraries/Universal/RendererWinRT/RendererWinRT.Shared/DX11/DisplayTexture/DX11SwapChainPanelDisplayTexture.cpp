@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "DX11SwapChainPanelDisplayTexture.h"
+#include "..\DX11DeviceResources.h"
 
 using namespace Windows::Graphics::Display;
 
@@ -7,9 +8,10 @@ namespace DX11{
 	namespace DisplayTexture{
 
 		SwapChainPanelDisplayTexture::SwapChainPanelDisplayTexture(
+			DeviceResources *devRes,
 			Windows::UI::Xaml::Controls::SwapChainPanel ^swapChainPanel,
 			Windows::Graphics::Display::DisplayInformation ^currentDisplayInformation)
-			: swapChainPanel(swapChainPanel)
+			: DisplayTexture(devRes), swapChainPanel(swapChainPanel)
 		{
 			Orientation defaultOrientation, currentOrientation;
 
@@ -30,8 +32,9 @@ namespace DX11{
 		SwapChainPanelDisplayTexture::~SwapChainPanelDisplayTexture(){
 		}
 
-		void SwapChainPanelDisplayTexture::Resize(){
-
+		HRESULT SwapChainPanelDisplayTexture::Resize(){
+			HRESULT hr = S_OK;
+			return hr;
 		}
 
 		void SwapChainPanelDisplayTexture::ConvOrientations(DisplayOrientations from, Orientation &to){

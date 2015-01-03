@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "DX11H.h"
+#include "..\Exceptions\DX11ExceptHresultException.h"
 
 #include <d3d11_2.h>
 
@@ -8,7 +9,8 @@ namespace DX11{
 	void H::ThrowIfFailed(HRESULT hr){
 		if (FAILED(hr)){
 			// Set a breakpoint on this line to catch Win32 API errors.
-			throw Platform::Exception::CreateException(hr);
+			/*throw Platform::Exception::CreateException(hr);*/
+			throw DX11::Exception::HresultException(hr);
 		}
 	}
 

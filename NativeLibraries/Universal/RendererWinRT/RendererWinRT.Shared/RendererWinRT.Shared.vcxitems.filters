@@ -7,6 +7,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11DisplayTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11H.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11Except.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
@@ -17,5 +20,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11DisplayTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11H.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.cpp" />
   </ItemGroup>
 </Project>
