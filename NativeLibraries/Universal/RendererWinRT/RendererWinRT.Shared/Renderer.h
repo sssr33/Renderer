@@ -41,6 +41,13 @@ namespace RendererWinRT{
 		// App events
 		void OnSuspending(Platform::Object^ sender, Windows::ApplicationModel::SuspendingEventArgs^ e);
 		void OnResuming(Platform::Object ^sender, Platform::Object ^args);
+
+		// Tmp
+		Windows::Foundation::IAsyncAction ^renderLoopWorker;
+		Concurrency::critical_section criticalSection;
+
+		void StartRenderLoop();
+		void StopRenderLoop();
 	};
 
 }

@@ -10,6 +10,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11Except.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11MathOperators.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
@@ -22,5 +23,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11H.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11MathOperators.cpp" />
   </ItemGroup>
 </Project>

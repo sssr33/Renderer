@@ -16,7 +16,33 @@ namespace DX11{
 		DeviceResources();
 		~DeviceResources();
 
+		Microsoft::WRL::ComPtr<ID3D11Device2> GetD3DDevice() const;
+		Microsoft::WRL::ComPtr<ID3D11DeviceContext2> GetD3DContext() const;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> GetD3DDisplayTarget() const;
+		const D3D11_VIEWPORT &GetD3DDisplayViewport() const;
+		D3D_FEATURE_LEVEL GetD3DFeatureLevel() const;
+
+		Microsoft::WRL::ComPtr<ID2D1Device1> GetD2DDevice() const;
+		Microsoft::WRL::ComPtr<ID2D1DeviceContext1> GetD2DContext() const;
+		Microsoft::WRL::ComPtr<ID2D1Bitmap1> GetD2DDisplayTarget() const;
+		Microsoft::WRL::ComPtr<ID2D1Factory2> GetD2DFactory() const;
+
+		Microsoft::WRL::ComPtr<IDWriteFactory2> GetDWriteFactory() const;
+		Microsoft::WRL::ComPtr<IWICImagingFactory2> GetWICFactory() const;
+
+		void SetDpi(float v);
+		void SetScale(const DirectX::XMFLOAT2 &v);
+		void SetLogicalSize(const DirectX::XMFLOAT2 &v);
+		void SetCurrentOrientation(DisplayTexture::Orientation v);
+
 		void Initialize(std::unique_ptr<DisplayTexture::DisplayTexture> &&displayTexture);
+
+		void SetD3DDisplayTarget(ID3D11DepthStencilView *depthStencil = nullptr);
+		void SetD2DDisplayTarget();
+		void Present();
+		void Trim();
+		// This method is called in the event handler for the DisplayContentsInvalidated event.
+		void ValidateDevice();
 	private:
 		// D3D
 		Microsoft::WRL::ComPtr<ID3D11Device2>			d3dDevice;
@@ -41,6 +67,7 @@ namespace DX11{
 		void CreateDeviceIndependentResources();
 		void CreateDeviceResources();
 		void CreateSizeDependentResources();
+		void CreateRenderTargets();
 	};
 
 }

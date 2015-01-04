@@ -15,6 +15,7 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::Graphics::Display;
 using namespace Windows::System::Threading;
+using namespace concurrency;
 
 namespace RendererWinRT{
 
@@ -37,6 +38,8 @@ namespace RendererWinRT{
 			new SwapChainPanelDisplayTexture(this->dxDev.get(), panel, currentDisplayInformation));
 
 		this->dxDev->Initialize(std::move(dispTex));
+
+		this->StartRenderLoop();
 	}
 
 	void Renderer::InitVisualEventHandlers(SwapChainPanel ^panel){
@@ -100,37 +103,50 @@ namespace RendererWinRT{
 
 	// Window event handlers.
 	void Renderer::OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args){
-
+		if (args->Visible){
+			this->StartRenderLoop();
+		}
+		else{
+			this->StopRenderLoop();
+		}
 	}
 
 	// Display event handlers.
 	void Renderer::OnDpiChanged(DisplayInformation^ sender, Object^ args){
-
+		critical_section::scoped_lock lock(this->criticalSection);
+		this->dxDev->SetDpi(sender->LogicalDpi);
 	}
 
 	void Renderer::OnOrientationChanged(DisplayInformation^ sender, Object^ args){
+		critical_section::scoped_lock lock(this->criticalSection);
+		DX11::DisplayTexture::Orientation currentOrientation;
 
+		SwapChainPanelDisplayTexture::ConvOrientations(sender->CurrentOrientation, currentOrientation);
+		this->dxDev->SetCurrentOrientation(currentOrientation);
 	}
 
 	void Renderer::OnCompositionScaleChanged(SwapChainPanel^ sender, Object^ args){
-
+		critical_section::scoped_lock lock(this->criticalSection);
+		this->dxDev->SetScale(DirectX::XMFLOAT2(sender->CompositionScaleX, sender->CompositionScaleY));
 	}
 
 	void Renderer::OnSwapChainPanelSizeChanged(Object^ sender, SizeChangedEventArgs^ e){
-
+		critical_section::scoped_lock lock(this->criticalSection);
+		this->dxDev->SetLogicalSize(DirectX::XMFLOAT2(e->NewSize.Width, e->NewSize.Height));
 	}
 
 	void Renderer::OnDisplayContentsInvalidated(DisplayInformation^ sender, Object^ args){
-
+		critical_section::scoped_lock lock(this->criticalSection);
+		this->dxDev->ValidateDevice();
 	}
 
 	// Independent input handling functions.
 	void Renderer::OnPointerPressed(Object^ sender, PointerEventArgs^ e){
-
+		
 	}
 
 	void Renderer::OnPointerMoved(Object^ sender, PointerEventArgs^ e){
-
+		
 	}
 
 	void Renderer::OnPointerReleased(Object^ sender, PointerEventArgs^ e){
@@ -139,11 +155,58 @@ namespace RendererWinRT{
 
 	// App events
 	void Renderer::OnSuspending(Object^ sender, SuspendingEventArgs^ e){
+		critical_section::scoped_lock lock(this->criticalSection);
+		this->dxDev->Trim();
 
+		this->StopRenderLoop();
 	}
 
 	void Renderer::OnResuming(Object ^sender, Object ^args){
+		this->StartRenderLoop();
+	}
 
+	void Renderer::StartRenderLoop(){
+		// If the animation render loop is already running then do not start another thread.
+		if (this->renderLoopWorker != nullptr 
+			&& this->renderLoopWorker->Status == AsyncStatus::Started)
+		{
+			return;
+		}
+
+		// Create a task that will be run on a background thread.
+		auto workItemHandler = ref new WorkItemHandler([this](IAsyncAction ^ action){
+			// Calculate the updated frame and render once per vertical blanking interval.
+			while (action->Status == AsyncStatus::Started){
+				critical_section::scoped_lock lock(this->criticalSection);
+				/*Update();
+				if (Render())
+				{
+					m_deviceResources->Present();
+				}*/
+
+				auto d3dCtx = this->dxDev->GetD3DContext();
+				auto d3dRT = this->dxDev->GetD3DDisplayTarget();
+
+				this->dxDev->SetD3DDisplayTarget();
+
+				float clearColor[] = { 0.5f, 0.5f, 1.0f, 1.0f };
+
+				d3dCtx->ClearRenderTargetView(d3dRT.Get(), clearColor);
+
+				this->dxDev->Present();
+			}
+		});
+
+		// Run task on a dedicated high priority background thread.
+		this->renderLoopWorker = ThreadPool::RunAsync(
+			workItemHandler, 
+			WorkItemPriority::High, 
+			WorkItemOptions::TimeSliced);
+
+	}
+
+	void Renderer::StopRenderLoop(){
+		this->renderLoopWorker->Cancel();
 	}
 
 }

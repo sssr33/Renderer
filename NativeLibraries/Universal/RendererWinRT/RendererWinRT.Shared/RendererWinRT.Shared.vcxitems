@@ -14,6 +14,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11MathOperators.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11Except.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Helpers\DX11MathOperators.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptHresultException.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\Exceptions\DX11ExceptDeviceLost.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DX11\DisplayTexture\DX11SwapChainPanelDisplayTexture.cpp" />
